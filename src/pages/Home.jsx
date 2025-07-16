@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../slices/cartSlice';
+import { FcNext } from 'react-icons/fc';
+import { GrNext, GrPrevious } from 'react-icons/gr';
 
 const PRODUCTS_PER_PAGE = 10;
 
@@ -79,7 +81,10 @@ const Home = () => {
           disabled={currentPage === 1}
           onClick={() => setCurrentPage((prev) => prev - 1)}
         >
-          Prev
+          <div className='flex items-center gap-2'>
+            <GrPrevious />
+            Prev
+          </div>
         </button>
         <span className=' mx-4' >
           Page {currentPage} of {totalPages}
@@ -88,7 +93,10 @@ const Home = () => {
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage((prev) => prev + 1)}
         >
-          Next
+
+          <div className='flex items-center gap-2'>Next
+            <GrNext />
+          </div>
         </button>
       </div>
     </div>
