@@ -8,7 +8,7 @@ const Checkout = () => {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h2>Checkout</h2>
+      <h2 className=' text-2xl mb-2'>Checkout</h2>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
@@ -20,8 +20,8 @@ const Checkout = () => {
               </li>
             ))}
           </ul>
-          <h3>Total: ₹{total}</h3>
-          <button>Place Order</button>
+          <h3 className='mt-3 font-semibold'>Total: ₹{total}</h3>
+          <button className=' bg-teal-800 text-white w-full mt-2 p-1'>Place Order</button>
         </>
       )}
     </div>
