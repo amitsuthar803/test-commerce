@@ -24,10 +24,10 @@ const Navbar = () => {
       </div>
 
 
-      <h1 className='flex items-center gap-2'>Test Commerce <BsCart/></h1>
+      <h1 className='flex items-center gap-2'>Test Commerce <BsCart /></h1>
       <div>
-        {user && <span className='mx-3'>👤 {user.username}</span>}
-        <Link to="/checkout">🛒 Cart ({cartItems.length})</Link>
+        {user && <span className='mx-3'>{user.username}</span>}
+        <Link to="/checkout">Cart ({cartItems.length})</Link>
 
         {token ? (
           <button onClick={handleLogout} className='mx-3'>Logout</button>
