@@ -6,10 +6,9 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error, token } = useSelector((state) => state.auth);
 
-  console.log('token', token)
-  const [formData, setFormData] = useState({ username: 'emilys', password: 'emilyspass' });
+  const { loading, error, token } = useSelector((state) => state.auth);
+  const [formData, setFormData] = useState({ username: '', password: '' });
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,14 +30,18 @@ const Login = () => {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input value='emilys' name="username" placeholder="Username" onChange={handleChange} required />
-        <input value='emilyspass' name="password" type="password" placeholder="Password" onChange={handleChange} required />
-        <button type="submit" disabled={loading}>Login</button>
+      <h2 className=' mb-5 font-bold text-3xl'>Login</h2>
+      <div className=' font-semibold'>
+        <p>Username: emilys</p>
+        <p>Password: emilyspass</p>
+      </div>
+      <form onSubmit={handleSubmit} className='flex gap-2 mt-5' >
+        <input className=' border-2 p-1 rounded-md' name="username" placeholder="Username" onChange={handleChange} required />
+        <input className='border-2 p-1 rounded-md' name="password" type="password" placeholder="Password" onChange={handleChange} required />
+        <button className=' bg-teal-800 text-white p-2 rounded-md' type="submit" disabled={loading}>Login</button>
       </form>
-      {token && <p style={{ color: 'green' }}>Login successful!</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {token && <p className='text-green-500'>Login successful!</p>}
+      {error && <p className='text-red-500 capitalize font-semibold'>{error}</p>}
     </div>
   );
 };

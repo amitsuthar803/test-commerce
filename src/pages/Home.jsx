@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../slices/cartSlice';
 
@@ -19,7 +19,7 @@ const Home = () => {
       .then((data) => setCategories(data));
   }, []);
 
- 
+
   useEffect(() => {
     const url =
       selectedCategory === 'all'
@@ -30,7 +30,7 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
-        setCurrentPage(1); 
+        setCurrentPage(1);
       });
   }, [selectedCategory]);
 
@@ -39,10 +39,10 @@ const Home = () => {
   const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>🛍️ Products</h2>
+    <div className=' p-8'>
+      <h2 className=' text-2xl'>Products</h2>
 
-      <div style={{ marginBottom: '1rem' }}>
+      <div className=' mb-6'>
         <label>Category: </label>
         <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory}>
           <option value="all">All</option>
@@ -55,36 +55,41 @@ const Home = () => {
 
       </div>
 
-      <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
+      <div class="grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(200px,1fr))]"
+      >
         {currentProducts.map((product) => (
-          <div key={product.id} style={{ border: '1px solid #ddd', padding: '1rem' }}>
-            <img
-              src={product.thumbnail}
-              alt={product.title}
-              style={{ width: '100%', height: '120px', objectFit: 'cover' }}
-            />
-            <h4>{product.title}</h4>
-            <p>₹{product.price}</p>
-            <button onClick={() => dispatch(addToCart(product))}>Add to Cart</button>
+          <div key={product.id} className='border-2 flex justify-between flex-col'>
+            <div className='p-1'>
+
+              <img
+                src={product.thumbnail}
+                alt={product.title}
+                className=' object-cover'
+
+              />
+              <h4>{product.title}</h4>
+              <p>₹{product.price}</p>
+            </div>
+            <button className=' bg-teal-800 text-white w-full mt-2 p-1' onClick={() => dispatch(addToCart(product))}>Add to Cart</button>
           </div>
         ))}
       </div>
 
-      <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+      <div className=' mt-8 text-center'>
         <button
           disabled={currentPage === 1}
           onClick={() => setCurrentPage((prev) => prev - 1)}
         >
-          ◀ Prev
+          Prev
         </button>
-        <span style={{ margin: '0 1rem' }}>
+        <span className=' mx-4' >
           Page {currentPage} of {totalPages}
         </span>
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage((prev) => prev + 1)}
         >
-          Next ▶
+          Next
         </button>
       </div>
     </div>

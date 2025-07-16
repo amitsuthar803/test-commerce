@@ -16,18 +16,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav style={{ padding: '1rem', backgroundColor: '#eee', display: 'flex', justifyContent: 'space-between' }}>
+    <nav className='p-4 bg-teal-800 text-white flex justify-between items-center' >
       <div>
         <Link to="/">Home</Link>
       </div>
       <div>
-        {user && <span style={{ marginRight: '1rem' }}>👤 {user.username}</span>}
+        {user && <span className='mx-3'>👤 {user.username}</span>}
         <Link to="/checkout">🛒 Cart ({cartItems.length})</Link>
 
         {token ? (
-          <button onClick={handleLogout} style={{ marginLeft: '1rem' }}>Logout</button>
+          <button onClick={handleLogout} className='mx-3'>Logout</button>
         ) : (
-          <Link to="/login" style={{ marginLeft: '1rem' }}>Login</Link>
+          <Link to="/login" className='mx-3'>Login</Link>
         )}
       </div>
     </nav>
